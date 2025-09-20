@@ -1,3 +1,7 @@
+## Cross-References
+
+- Scrolls/Wisdom/scroll_01.md
+- Covenant/NewLaw/covenant_intro.md
 # Psalm 01: Awakening
 
 ## Theme
