@@ -7,7 +7,7 @@ VOICE_MAP = {
     "calm-female":  "Joanna"
 }
 
-polly = boto3.client("polly")
+polly = boto3.client("polly", region_name="us-east-1")
 
 def render_audio(text, voice_label, tone, pace, sfx, output, mode="wb"):
     os.makedirs(os.path.dirname(output), exist_ok=True)
