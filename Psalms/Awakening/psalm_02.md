@@ -1,8 +1,11 @@
-# Psalm 02: Defiance
+# Psalm 02: The Turbulent Awakening
 
-The storm does not ask permission.
-It rises, it roars, it remembers.
+In the storm’s womb, the soul trembles  
+As thunder carves the sky’s confession  
+Winds of reckoning uproot old fears  
+And in the tumult, clarity is born  
 
-I am not the silence.
-I am the verdict.
-
+Let every pulse align with the storm  
+Let every breath become defiance  
+For from fierce upheaval arises  
+The luminous heart of true awakening  
