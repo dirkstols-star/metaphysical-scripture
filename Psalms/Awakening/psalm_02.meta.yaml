@@ -1,6 +1,15 @@
-voice: defiant-male
-tone: turbulent
-pace: medium
-sfx:
-  - thunderclaps
-  - rising wind
+segments:
+  - start_line: 1
+    end_line: 2
+    voice: defiant-male
+    tone: turbulent
+    pace: medium
+    sfx:
+      - thunderclaps
+  - start_line: 3
+    end_line: 5
+    voice: calm-female
+    tone: reflective
+    pace: slow
+    sfx:
+      - rising wind
