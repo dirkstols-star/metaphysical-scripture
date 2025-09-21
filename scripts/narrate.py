@@ -1,36 +1,24 @@
 #!/usr/bin/env python3
-import sys, yaml, os
+import os, sys, yaml
 from scripts.narrator import render_audio
 
 def main(n):
-    text_path = f"Psalms/Awakening/psalm_{n}.md"
-    meta_path = f"Psalms/Awakening/psalm_{n}.meta.yaml"
-    output    = f"Assets/Audio/Psalm{n}.mp3"
-    os.makedirs(os.path.dirname(output), exist_ok=True)
-
-    lines = open(text_path).read().splitlines()
-    meta  = yaml.safe_load(open(meta_path))
-
-    if 'segments' in meta:
-        # build combined placeholder file
-        with open(output, 'w') as final:
-            final.write("[MULTI-VOICE AUDIO PLACEHOLDER]\n")
-            for i, seg in enumerate(meta['segments'], 1):
-                seg_text = "\n".join(lines[seg['start_line']-1 : seg['end_line']])
-                final.write(f"\n--- Segment {i} ---\n")
-                final.write(f"Voice: {seg['voice']}\n")
-                final.write(f"Tone: {seg['tone']}\n")
-                final.write(f"Pace: {seg['pace']}\n")
-                final.write(f"SFX: {', '.join(seg['sfx'])}\n\n")
-                final.write(seg_text + "\n")
-        print(f"🔊 Multi-voice rendering complete: {output}")
+    root   = "Psalms/Awakening"
+    text   = open(f"{root}/psalm_{n}.md").read().splitlines()
+    meta   = yaml.safe_load(open(f"{root}/psalm_{n}.meta.yaml"))
+    out    = f"Assets/Audio/Psalm{n}.mp3"
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    if meta.get("segments"):
+        for i, s in enumerate(meta["segments"]):
+            segtxt = "\n".join(text[s["start_line"]-1:s["end_line"]])
+            mode = "wb" if i == 0 else "ab"
+            render_audio(segtxt, s["voice"], s["tone"], s["pace"], s["sfx"], out, mode)
+        print(f"✅ Combined MP3 written to: {out}")
     else:
-        # fallback to single-voice
-        text = "\n".join(lines)
-        render_audio(text, meta["voice"], meta["tone"], meta["pace"], meta["sfx"], output)
+        render_audio("\n".join(text), meta["voice"], meta["tone"], meta["pace"], meta["sfx"], out)
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python3 -m scripts.narrate <psalm_number>")
+    if len(sys.argv) != 2:
+        print("Usage: python3 -m scripts.narrate <number>")
         sys.exit(1)
     main(sys.argv[1])
