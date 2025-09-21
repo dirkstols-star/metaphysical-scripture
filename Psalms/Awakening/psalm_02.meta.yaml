@@ -1,7 +1,6 @@
-title: Psalm 02: Defiance
-tone: turbulent
 voice: defiant-male
+tone: turbulent
 pace: medium
-sfx: thunderclaps, rising wind
-emotion: fierce
-
+sfx:
+  - thunderclaps
+  - rising wind
